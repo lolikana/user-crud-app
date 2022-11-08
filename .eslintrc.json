@@ -1,7 +1,20 @@
 {
   "env": { "browser": true, "node": true, "es6": true },
-  "extends": ["next", "next/core-web-vitals", "next/babel", "prettier"],
-  "plugins": ["import", "simple-import-sort"],
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["import", "simple-import-sort", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "tsconfigRootDir": "./",
+    "project": "./tsconfig.json"
+  },
+  "root": true, // 上位ディレクトリにある他のeslintrcを参照しないようにする
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
