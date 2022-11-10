@@ -19,11 +19,16 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/pages/*": ["./src/pages/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/public/*": ["./src/public/*"]
+      "@/*": ["./src/*"],
+      "@/public/*": ["./public/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "./tailwind.config.js",
+    "./postcss.config.js"
+  ],
   "exclude": ["node_modules"]
 }
