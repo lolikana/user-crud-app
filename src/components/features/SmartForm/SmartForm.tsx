@@ -1,5 +1,5 @@
 import React, { createElement, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { TForm } from './types/types';
 
@@ -14,7 +14,6 @@ const SmartForm = <
   const methods = useForm({ ...options });
   const {
     handleSubmit,
-    register,
     reset,
     formState: { isSubmitSuccessful }
   } = methods;
@@ -25,33 +24,34 @@ const SmartForm = <
   }, [isSubmitSuccessful, reset]);
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="grid items-center gap-4 py-5 md:grid-cols-6 lg:grid-cols-12"
-    >
-      {Array.isArray(children)
-        ? children.map(child => {
-            return child.props.name
-              ? createElement(child.type, {
-                  ...{
-                    ...child.props,
-                    register: { ...register(child.props.name) },
-                    key: child.props.name + child.props.id
-                  }
-                })
-              : child;
-          })
-        : children}
-      {showBtn && (
-        <div className="container mx-auto md:col-span-6 lg:col-start-4 lg:row-end-4">
-          <input
-            defaultValue={showBtn}
-            type="Submit"
-            className="w-full cursor-pointer rounded-md border bg-green-500 py-2 px-4 text-white hover:border-green-500 hover:bg-gray-50 hover:text-gray-800"
-          />
-        </div>
-      )}
-    </form>
+    <FormProvider {...methods}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="grid items-center gap-4 py-5 md:grid-cols-6 lg:grid-cols-12"
+      >
+        {Array.isArray(children)
+          ? children.map(child => {
+              return child.props.name
+                ? createElement(child.type, {
+                    ...{
+                      ...child.props,
+                      key: child.props.name + child.props.id
+                    }
+                  })
+                : child;
+            })
+          : children}
+        {showBtn && (
+          <div className="container mx-auto md:col-span-6 lg:col-start-4 lg:row-end-4">
+            <input
+              defaultValue={showBtn}
+              type="Submit"
+              className="w-full cursor-pointer rounded-md border bg-green-500 py-2 px-4 text-white hover:border-green-500 hover:bg-gray-50 hover:text-gray-800"
+            />
+          </div>
+        )}
+      </form>
+    </FormProvider>
   );
 };
 
