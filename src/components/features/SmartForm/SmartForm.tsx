@@ -22,7 +22,7 @@ const SmartForm = <
   useEffect(() => {
     if (!isSubmitSuccessful) return;
     reset();
-  }, []);
+  }, [isSubmitSuccessful, reset]);
 
   return (
     <form
