@@ -13,6 +13,11 @@ export default function Home() {
     setFormIsSown(prevState => !prevState);
   };
 
+  const toogleOnSuccess = () => {
+    setOnSuccess(false);
+    // setOnSuccess(prevState => !prevState);
+  };
+
   const onSuccessHandler = () => {
     setOnSuccess(true);
     setFormIsSown(false);
@@ -50,13 +55,13 @@ export default function Home() {
           </div>
           {/* collapsable form */}
           {onSuccess ? (
-            <OnSuccessMsg message="New Employee Added" />
+            <OnSuccessMsg message="New Employee Added" onClick={toogleOnSuccess} />
+          ) : formIsShown ? (
+            <div className="container mx-auto">
+              <CreateEmployee onSuccess={onSuccessHandler} />
+            </div>
           ) : (
-            formIsShown && (
-              <div className="container mx-auto">
-                <CreateEmployee onSuccess={onSuccessHandler} />
-              </div>
-            )
+            <></>
           )}
           {/* table */}
         </div>
