@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CreateEmployee from '@/components/elements/employee/CreateEmployee';
 
 export default function Home() {
-  const [formIsShown, setFormIsSown] = useState(false);
+  const [formIsShown, setFormIsSown] = useState(true);
 
   const toggleForm = () => {
     setFormIsSown(prevState => !prevState);

@@ -10,7 +10,7 @@ export type TForm<TFormValues extends FieldValues> = {
   options: UseFormProps<TFormValues>;
   onSubmit: SubmitHandler<TFormValues>;
   children: ReactNode;
-  submitBtn: string;
+  showBtn?: string;
 };
 
 export type TInput = {
