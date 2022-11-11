@@ -1,10 +1,5 @@
 import { ChangeEvent, HTMLInputTypeAttribute, ReactNode } from 'react';
-import {
-  FieldValues,
-  SubmitHandler,
-  UseFormProps,
-  UseFormRegister
-} from 'react-hook-form';
+import { FieldValues, SubmitHandler, UseFormProps } from 'react-hook-form';
 
 export type TForm<TFormValues extends FieldValues> = {
   options: UseFormProps<TFormValues>;
@@ -14,13 +9,12 @@ export type TForm<TFormValues extends FieldValues> = {
 };
 
 export type TInput = {
-  register?: UseFormRegister<FieldValues>;
   name: string;
   label: string;
   type: HTMLInputTypeAttribute;
 };
 
-export type TRadio = Omit<TInput, 'type' | 'label'> & {
+export type TRadio = Omit<TInput, 'type' | 'label' | 'register'> & {
   id: 'radioDefault1' | 'radioDefault2';
   value: 'Active' | 'Pending';
   classRadio: string;

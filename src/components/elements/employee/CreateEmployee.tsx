@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 
 import {
   Input,
-  Radio,
   RadioInput,
+  Radios,
   SmartForm,
   TRadio
 } from '@/components/features/SmartForm';
@@ -24,20 +24,17 @@ const radioStatus: Omit<TRadio, 'name'>[] = [
 ];
 
 const defaultValues = {
-  // createDate: new Date().toLocaleDateString('ja-JP').replaceAll('/', '-').toString()
+  firstname: 'Tom',
+  lastname: 'Gr',
+  email: 'tom.gr@test.com',
+  salary: 1300,
+  createDate: new Date().toLocaleDateString('ja-JP').replaceAll('/', '-').toString()
 };
 
 const CreateEmployee = () => {
-  const [status, setStatus] = useState<string>('');
-
-  const toggleStatus = (event: ChangeEvent<HTMLInputElement>) => {
-    setStatus(event.target.value);
-  };
-
   const handleSubmit = (data: TEmployee) => {
     console.log(Object.keys(data).length === 0);
-    const datas = { ...data, status };
-    if (Object.keys(datas).length === 0) console.log('no datas');
+    if (Object.keys(data).length === 0) console.log('no datas');
     console.log(data);
   };
 
@@ -48,10 +45,9 @@ const CreateEmployee = () => {
       <Input name="email" label="Email" type="email" />
       <Input name="salary" label="Salary" type="number" />
       <Input name="createDate" label="" type="date" />
-      <Radio>
+      <Radios>
         {radioStatus.map(status => (
           <RadioInput
-            onChange={toggleStatus}
             key={status.id}
             name="status"
             value={status.value}
@@ -59,7 +55,7 @@ const CreateEmployee = () => {
             classRadio={status.classRadio}
           />
         ))}
-      </Radio>
+      </Radios>
       <button
         defaultValue="Add"
         className="mx-auto flex w-full cursor-pointer justify-center gap-1 rounded-md border bg-green-500 py-2 px-4 text-white hover:border-green-500 hover:bg-gray-50 hover:text-gray-800 md:col-span-6 lg:col-start-4 lg:row-end-4"
