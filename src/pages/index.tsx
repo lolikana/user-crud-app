@@ -2,12 +2,20 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 import CreateEmployee from '@/components/elements/employee/CreateEmployee';
+import { OnSuccessMsg } from '@/components/features/Form';
 
 export default function Home() {
   const [formIsShown, setFormIsSown] = useState(true);
+  const [onSuccess, setOnSuccess] = useState<boolean>(false);
 
   const toggleForm = () => {
+    setOnSuccess(false);
     setFormIsSown(prevState => !prevState);
+  };
+
+  const onSuccessHandler = () => {
+    setOnSuccess(true);
+    setFormIsSown(false);
   };
 
   return (
@@ -41,12 +49,15 @@ export default function Home() {
             </button>
           </div>
           {/* collapsable form */}
-          {formIsShown && (
-            <div className="container mx-auto">
-              <CreateEmployee />
-            </div>
+          {onSuccess ? (
+            <OnSuccessMsg message="New Employee Added" />
+          ) : (
+            formIsShown && (
+              <div className="container mx-auto">
+                <CreateEmployee onSuccess={onSuccessHandler} />
+              </div>
+            )
           )}
-
           {/* table */}
         </div>
       </main>

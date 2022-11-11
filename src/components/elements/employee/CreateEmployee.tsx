@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import {
   Input,
@@ -31,11 +31,17 @@ const defaultValues = {
   createAt: new Date().toLocaleDateString('ja-JP').replaceAll('/', '-').toString()
 };
 
-const CreateEmployee = () => {
+type Props = {
+  onSuccess: () => void;
+};
+
+const CreateEmployee: FC<Props> = props => {
+  const { onSuccess } = props;
+
   const handleSubmit = (data: TEmployee) => {
-    console.log(Object.keys(data).length === 0);
-    if (Object.keys(data).length === 0) console.log('no datas');
     console.log(data);
+
+    if (data) onSuccess();
   };
 
   return (
