@@ -28,7 +28,7 @@ const defaultValues = {
   lastname: 'Gr',
   email: 'tom.gr@test.com',
   salary: 1300,
-  createDate: new Date().toLocaleDateString('ja-JP').replaceAll('/', '-').toString()
+  createAt: new Date().toLocaleDateString('ja-JP').replaceAll('/', '-').toString()
 };
 
 const CreateEmployee = () => {
@@ -44,7 +44,7 @@ const CreateEmployee = () => {
       <Input name="lastname" label="Lastname" type="text" />
       <Input name="email" label="Email" type="email" />
       <Input name="salary" label="Salary" type="number" />
-      <Input name="createDate" label="" type="date" />
+      <Input name="createAt" label="" type="date" />
       <Radios>
         {radioStatus.map(status => (
           <RadioInput

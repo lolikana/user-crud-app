@@ -2,7 +2,7 @@ export type TEmployee = {
   firstname: string;
   lastname: string;
   email: string;
-  createDate: string;
+  createAt: string;
   salary: number;
   status: string;
 };
