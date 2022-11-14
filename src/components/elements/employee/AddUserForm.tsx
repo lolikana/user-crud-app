@@ -36,7 +36,7 @@ type Props = {
   onErrorMsg: () => void;
 };
 
-const CreateUser: FC<Props> = props => {
+const AddUserForm: FC<Props> = props => {
   const { onSuccessMsg, onErrorMsg } = props;
 
   const handleSubmit = (data: TEmployee) => {
@@ -83,4 +83,4 @@ const CreateUser: FC<Props> = props => {
   );
 };
 
-export default CreateUser;
+export default AddUserForm;
