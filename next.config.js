@@ -4,6 +4,14 @@ const nextConfig = {
   swcMinify: true,
   eslint: {
     dirs: ['src']
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'robohash.org'
+      }
+    ]
   }
 };
 
