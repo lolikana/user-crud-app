@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     "./tailwind.config.js",
-    "./postcss.config.js"
+    "./postcss.config.js",
+    "src/database/conn.js"
   ],
   "exclude": ["node_modules"]
 }
