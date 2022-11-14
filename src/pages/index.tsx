@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useState } from 'react';
 
-import { CreateUser } from '@/components/elements/employee';
+import { AddUserForm, UsersTable } from '@/components/elements/employee';
 import { OnErrorMsg, OnSuccessMsg } from '@/components/features/Form';
 
 export default function Home() {
@@ -66,12 +66,13 @@ export default function Home() {
             <OnErrorMsg message="Error, missing datas" onClick={toogleCloseMsg} />
           ) : formIsShown ? (
             <div className="container mx-auto">
-              <CreateUser onSuccessMsg={toogleSuccessMsg} onErrorMsg={toogleErrorMsg} />
+              <AddUserForm onSuccessMsg={toogleSuccessMsg} onErrorMsg={toogleErrorMsg} />
             </div>
           ) : (
             <></>
           )}
           {/* table */}
+          <UsersTable />
         </div>
       </main>
     </section>
