@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { HeadTable, Table } from '@/components/features/Table';
-import BodyTable from '@/components/features/Table/BodyTable';
+import { BodyTable, HeadTable, Table } from '@/components/features/Table';
 
 const userTitle = {
   col_1: 'Name',
