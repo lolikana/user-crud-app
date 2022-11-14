@@ -40,7 +40,6 @@ const CreateEmployee: FC<Props> = props => {
 
   const handleSubmit = (data: TEmployee) => {
     console.log(data);
-
     if (data) onSuccess();
   };
 
