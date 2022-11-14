@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler } from 'react';
+import React from 'react';
 
 import { BodyTable, HeadTable, Table } from '@/components/features/Table';
 
