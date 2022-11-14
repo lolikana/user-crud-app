@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 import { BodyTable, HeadTable, Table } from '@/components/features/Table';
@@ -29,10 +30,20 @@ const usersInfos = [
     role: 'Admin',
     createdOn: '2022-11-11',
     status: 'Active'
+  },
+  {
+    id: 3,
+    name: 'Tom Gr',
+    phone: '000-0000-0000',
+    email: 'tom.gr@maeda-g.co.jp',
+    role: 'Admin',
+    createdOn: '2022-11-11',
+    status: 'Active'
   }
 ];
 
 const UsersTable = () => {
+  const random = () => Math.floor(Math.random() * 20);
   return (
     <Table>
       <HeadTable colTitle={userTitle} />
@@ -44,8 +55,14 @@ const UsersTable = () => {
           >
             <th
               scope="row"
-              className="whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
+              className="flex items-center gap-2 whitespace-nowrap py-4 px-6 font-medium text-gray-900 dark:text-white"
             >
+              <Image
+                src={`https://robohash.org/${random()}`}
+                width={60}
+                height={60}
+                alt=""
+              />
               {datas.name}
             </th>
             <td className="py-4 px-6">{datas.phone}</td>
