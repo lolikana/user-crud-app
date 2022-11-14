@@ -1,2 +1,2 @@
-export { default as EmployeeForm } from './CreateEmployee';
+export { default as CreateUser } from './CreateUser';
 export type { TEmployee } from './types/types';

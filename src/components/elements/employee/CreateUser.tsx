@@ -32,15 +32,17 @@ const defaultValues = {
 };
 
 type Props = {
-  onSuccess: () => void;
+  onSuccessMsg: () => void;
+  onErrorMsg: () => void;
 };
 
-const CreateEmployee: FC<Props> = props => {
-  const { onSuccess } = props;
+const CreateUser: FC<Props> = props => {
+  const { onSuccessMsg, onErrorMsg } = props;
 
   const handleSubmit = (data: TEmployee) => {
     console.log(data);
-    if (data) onSuccess();
+    if (data.status === null) return onErrorMsg();
+    if (data) return onSuccessMsg();
   };
 
   return (
@@ -81,4 +83,4 @@ const CreateEmployee: FC<Props> = props => {
   );
 };
 
-export default CreateEmployee;
+export default CreateUser;

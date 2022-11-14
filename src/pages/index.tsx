@@ -1,25 +1,31 @@
 import Head from 'next/head';
 import { useState } from 'react';
 
-import CreateEmployee from '@/components/elements/employee/CreateEmployee';
-import { OnSuccessMsg } from '@/components/features/Form';
+import { CreateUser } from '@/components/elements/employee';
+import { OnErrorMsg, OnSuccessMsg } from '@/components/features/Form';
 
 export default function Home() {
   const [formIsShown, setFormIsSown] = useState(true);
   const [onSuccess, setOnSuccess] = useState<boolean>(false);
+  const [onError, setOnError] = useState<boolean>(false);
 
   const toggleForm = () => {
     setOnSuccess(false);
+    setOnError(false);
     setFormIsSown(prevState => !prevState);
   };
 
-  const toogleOnSuccess = () => {
+  const toogleCloseMsg = () => {
     setOnSuccess(false);
-    // setOnSuccess(prevState => !prevState);
+    setOnError(false);
   };
 
-  const onSuccessHandler = () => {
+  const toogleSuccessMsg = () => {
     setOnSuccess(true);
+    setFormIsSown(false);
+  };
+  const toogleErrorMsg = () => {
+    setOnError(true);
     setFormIsSown(false);
   };
 
@@ -55,10 +61,12 @@ export default function Home() {
           </div>
           {/* collapsable form */}
           {onSuccess ? (
-            <OnSuccessMsg message="New Employee Added" onClick={toogleOnSuccess} />
+            <OnSuccessMsg message="New Employee Added" onClick={toogleCloseMsg} />
+          ) : onError ? (
+            <OnErrorMsg message="Error, missing datas" onClick={toogleCloseMsg} />
           ) : formIsShown ? (
             <div className="container mx-auto">
-              <CreateEmployee onSuccess={onSuccessHandler} />
+              <CreateUser onSuccessMsg={toogleSuccessMsg} onErrorMsg={toogleErrorMsg} />
             </div>
           ) : (
             <></>
