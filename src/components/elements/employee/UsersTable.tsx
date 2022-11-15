@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { BodyTable, HeadTable, Table } from '@/components/features/Table';
+import { getUsers } from '@/lib/helper';
 
 const userTitle = {
   col_1: 'Name',
@@ -43,6 +44,8 @@ const usersInfos = [
 ];
 
 const UsersTable = () => {
+  getUsers().then(res => console.log(res));
+
   const random = () => Math.floor(Math.random() * 20);
   return (
     <Table>
