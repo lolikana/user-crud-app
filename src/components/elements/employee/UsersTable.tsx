@@ -46,7 +46,10 @@ const usersInfos = [
 const UsersTable = () => {
   getUsers().then(res => console.log(res));
 
-  const random = () => Math.floor(Math.random() * 20);
+  function random() {
+    Math.floor(Math.random() * 20);
+  }
+
   return (
     <Table>
       <HeadTable colTitle={userTitle} />
