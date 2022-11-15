@@ -31,14 +31,14 @@ export async function postUser(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-// put : http://localhost:3000/api/users/?userId=[id]
+// put : http://localhost:3000/api/users/[userId]
 export async function upadteUser(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { userId } = req.query;
     const formData = req.body;
 
     if (userId && formData) {
-      const updatedUser = await Users.findByIdAndUpdate(userId, formData);
+      const updatedUser = await Users.findByIdAndUpdate(userId, formData, { new: true });
       res.status(200).json(updatedUser);
     }
     res.status(404).json({ error: 'No user found' });
@@ -47,7 +47,7 @@ export async function upadteUser(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-// delete : http://localhost:3000/api/users/?userId=[id]
+// delete : http://localhost:3000/api/users/[userId]
 export async function deleteUser(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { userId } = req.query;
@@ -62,7 +62,7 @@ export async function deleteUser(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-// げt : http://localhost:3000/api/users/?userId=[id]
+// get : http://localhost:3000/api/users/[userId]
 export async function getUser(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { userId } = req.query;
