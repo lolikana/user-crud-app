@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import React from 'react';
 
@@ -13,50 +14,54 @@ const userTitle = {
   col_6: 'Status'
 };
 
-const usersInfos = [
-  {
-    id: 1,
-    name: 'Tom Gr',
-    phone: '000-0000-0000',
-    email: 'tom.gr@maeda-g.co.jp',
-    role: 'Admin',
-    createdOn: '2022-11-11',
-    status: 'Active'
-  },
-  {
-    id: 2,
-    name: 'Tom Gr',
-    phone: '000-0000-0000',
-    email: 'tom.gr@maeda-g.co.jp',
-    role: 'Admin',
-    createdOn: '2022-11-11',
-    status: 'Active'
-  },
-  {
-    id: 3,
-    name: 'Tom Gr',
-    phone: '000-0000-0000',
-    email: 'tom.gr@maeda-g.co.jp',
-    role: 'Admin',
-    createdOn: '2022-11-11',
-    status: 'Active'
-  }
-];
+// const usersInfos = [
+//   {
+//     id: 1,
+//     name: 'Tom Gr',
+//     phone: '000-0000-0000',
+//     email: 'tom.gr@maeda-g.co.jp',
+//     role: 'Admin',
+//     createdOn: '2022-11-11',
+//     status: 'Active'
+//   },
+//   {
+//     id: 2,
+//     name: 'Tom Gr',
+//     phone: '000-0000-0000',
+//     email: 'tom.gr@maeda-g.co.jp',
+//     role: 'Admin',
+//     createdOn: '2022-11-11',
+//     status: 'Active'
+//   },
+//   {
+//     id: 3,
+//     name: 'Tom Gr',
+//     phone: '000-0000-0000',
+//     email: 'tom.gr@maeda-g.co.jp',
+//     role: 'Admin',
+//     createdOn: '2022-11-11',
+//     status: 'Active'
+//   }
+// ];
 
 const UsersTable = () => {
-  getUsers().then(res => console.log(res));
+  // const { isLoading, isError, data, error } = useQuery(['users'], getUsers);
+  const { isLoading, data } = useQuery(['users'], getUsers);
 
   function random() {
     Math.floor(Math.random() * 20);
   }
 
+  if (isLoading) return <div>Employee is loading</div>;
+  // if (isError) return <div>Got error : {error}</div>;
+
   return (
     <Table>
       <HeadTable colTitle={userTitle} />
       <BodyTable>
-        {usersInfos.map(datas => (
+        {data.map((datas: any) => (
           <tr
-            key={datas.id}
+            key={datas._id}
             className="border-b bg-white dark:border-gray-700 dark:bg-gray-900"
           >
             <th
