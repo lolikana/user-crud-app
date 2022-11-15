@@ -74,13 +74,29 @@ const UsersTable = () => {
                 height={60}
                 alt=""
               />
-              {datas.name}
+              <span>{datas.name}</span>
             </th>
-            <td className="py-4 px-6">{datas.phone}</td>
-            <td className="py-4 px-6">{datas.email}</td>
-            <td className="py-4 px-6">{datas.createdOn}</td>
-            <td className="py-4 px-6">{datas.role}</td>
-            <td className="py-4 px-6">{datas.status}</td>
+            <td className="py-4 px-6">
+              <span>{datas.phone}</span>
+            </td>
+            <td className="py-4 px-6">
+              <span>{datas.email}</span>
+            </td>
+            <td className="py-4 px-6">
+              <span>{datas.createdOn}</span>
+            </td>
+            <td className="py-4 px-6">
+              <span>{datas.role}</span>
+            </td>
+            <td className="py-4 px-6">
+              <span
+                className={`${
+                  datas.status === 'Activate' ? 'bg-green-500' : 'bg-red-500'
+                } rounded-full py-1 px-2 text-black`}
+              >
+                {datas.status}
+              </span>
+            </td>
             <td className="py-4 px-6">
               <span className="cursor-pointer font-medium text-blue-600 hover:underline dark:text-blue-500">
                 Edit
