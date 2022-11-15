@@ -1,8 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import connectMongo from '@/database/connect';
+import { deleteUser, getUsers, postUser, upadteUser } from '@/database/controller';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   connectMongo().catch(() => res.status(405).json({ err: 'Error in the connection' }));
 
   // type of request
@@ -10,16 +11,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   switch (method) {
     case 'GET':
-      res.status(200).json({ method, name: 'GET Request' });
+      getUsers(req, res);
       break;
     case 'POST':
-      res.status(200).json({ method, name: 'POST Request' });
+      postUser(req, res);
       break;
     case 'PUT':
-      res.status(200).json({ method, name: 'PUT Request' });
+      upadteUser(req, res);
       break;
     case 'DELETE':
-      res.status(200).json({ method, name: 'DELETE Request' });
+      deleteUser(req, res);
       break;
 
     default:
@@ -28,5 +29,5 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
   // [GET, POST, PUT, DELETE]
 
-  res.status(200).json({ name: 'John Doe' });
+  //   res.status(200).json({ name: 'John Doe' });
 }
