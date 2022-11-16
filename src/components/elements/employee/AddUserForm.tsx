@@ -28,16 +28,15 @@ const defaultValues = {
   firstname: 'Tom',
   lastname: 'Gr',
   email: 'tom.gr@test.com',
-  salary: 1300,
   createdOn: new Date().toLocaleDateString('ja-JP').replaceAll('/', '-').toString()
 };
 
-type Props = {
+export type toggleMsg = {
   onSuccessMsg: () => void;
   onErrorMsg: () => void;
 };
 
-const AddUserForm: FC<Props> = props => {
+const AddUserForm: FC<toggleMsg> = props => {
   const { onSuccessMsg, onErrorMsg } = props;
 
   const handleSubmit = (data: TEmployee) => {
