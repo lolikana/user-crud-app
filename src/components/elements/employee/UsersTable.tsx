@@ -1,11 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import React from 'react';
+import React, { FC } from 'react';
 
 import { BodyTable, HeadTable, Table } from '@/components/features/Table';
 import { deleteUser, getUsers } from '@/lib/helper';
 
 import { TEmployee } from './types/types';
+
+type Props = {
+  showEditForm: () => void;
+};
 
 const userTitle = {
   col_1: 'Name',
@@ -16,7 +20,8 @@ const userTitle = {
   col_6: 'Status'
 };
 
-const UsersTable = () => {
+const UsersTable: FC<Props> = props => {
+  const { showEditForm } = props;
   // const { isLoading, isError, data, error } = useQuery(['users'], getUsers);
   const { isLoading, data } = useQuery(['users'], getUsers);
 
@@ -63,7 +68,10 @@ const UsersTable = () => {
               </span>
             </td>
             <td className="py-4 px-6">
-              <span className="cursor-pointer font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <span
+                onClick={showEditForm}
+                className="cursor-pointer font-medium text-blue-600 hover:underline dark:text-blue-500"
+              >
                 Edit
               </span>{' '}
               /{' '}

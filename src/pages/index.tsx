@@ -2,22 +2,36 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 import { AddUserForm, UsersTable } from '@/components/elements/employee';
+import EditUserForm from '@/components/elements/employee/EditUserForm';
 import { OnErrorMsg, OnSuccessMsg } from '@/components/features/Form';
 
 export default function Home() {
   const [formIsShown, setFormIsSown] = useState(true);
+  const [editFormIsShown, setEditFormIsSown] = useState(true);
   const [onSuccess, setOnSuccess] = useState<boolean>(false);
   const [onError, setOnError] = useState<boolean>(false);
 
   const toggleForm = () => {
     setOnSuccess(false);
     setOnError(false);
+    setEditFormIsSown(false);
     setFormIsSown(prevState => !prevState);
   };
 
-  const toogleCloseMsg = () => {
+  const toggleShowEditForm = () => {
     setOnSuccess(false);
     setOnError(false);
+    setFormIsSown(false);
+    setEditFormIsSown(prevState => !prevState);
+  };
+
+  const toogleCloseSuccessMsg = () => {
+    setOnSuccess(false);
+  };
+
+  const toogleCloseErrorMsg = () => {
+    setOnError(false);
+    setFormIsSown(true);
   };
 
   const toogleSuccessMsg = () => {
@@ -61,18 +75,20 @@ export default function Home() {
           </div>
           {/* collapsable form */}
           {onSuccess ? (
-            <OnSuccessMsg message="New Employee Added" onClick={toogleCloseMsg} />
+            <OnSuccessMsg message="New Employee Added" onClick={toogleCloseSuccessMsg} />
           ) : onError ? (
-            <OnErrorMsg message="Error, missing datas" onClick={toogleCloseMsg} />
+            <OnErrorMsg message="Error, missing datas" onClick={toogleCloseErrorMsg} />
           ) : formIsShown ? (
             <div className="container mx-auto">
               <AddUserForm onSuccessMsg={toogleSuccessMsg} onErrorMsg={toogleErrorMsg} />
             </div>
           ) : (
-            <></>
+            editFormIsShown && (
+              <EditUserForm onSuccessMsg={toogleSuccessMsg} onErrorMsg={toogleErrorMsg} />
+            )
           )}
           {/* table */}
-          <UsersTable />
+          <UsersTable showEditForm={toggleShowEditForm} />
         </div>
       </main>
     </section>
