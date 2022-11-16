@@ -1,12 +1,13 @@
 import { model, models, Schema } from 'mongoose';
 
 const userSchema = new Schema({
-  name: String,
+  firstname: String,
+  lastname: String,
   avatar: String,
   phone: String,
   email: String,
   role: String,
-  createdOn: String,
+  createdOn: Date,
   status: String
 });
 

@@ -12,6 +12,7 @@ export type TInput = {
   name: string;
   label: string;
   type: HTMLInputTypeAttribute;
+  value?: string;
 };
 
 export type TRadio = Omit<TInput, 'type' | 'label' | 'register'> & {
