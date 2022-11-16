@@ -1,8 +1,11 @@
 export type TEmployee = {
+  _id: string;
+  avatar: string;
   firstname: string;
   lastname: string;
+  phone: string;
   email: string;
-  createAt: string;
-  salary: number;
+  createdOn: string;
+  role: string;
   status: string;
 };

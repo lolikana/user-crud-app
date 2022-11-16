@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       break;
 
     default:
-      res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
+      res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);
       res.status(405).end(`Method ${method} not allowed`);
   }
 }
