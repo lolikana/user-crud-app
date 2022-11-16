@@ -7,8 +7,9 @@ import {
   SmartForm,
   TRadio
 } from '@/components/features/SmartForm';
-import { randomNumber } from '@/lib/helper';
+import { defaultUserValues } from '@/lib/data';
 
+import { toggleMsg } from './AddUserForm';
 import { TEmployee } from './types/types';
 
 const radioStatus: Omit<TRadio, 'name'>[] = [
@@ -24,12 +25,7 @@ const radioStatus: Omit<TRadio, 'name'>[] = [
   }
 ];
 
-type Props = {
-  onSuccessMsg: () => void;
-  onErrorMsg: () => void;
-};
-
-const EditUserForm: FC<Props> = props => {
+const EditUserForm: FC<toggleMsg> = props => {
   const { onSuccessMsg, onErrorMsg } = props;
 
   const handleSubmit = (data: TEmployee) => {
@@ -41,29 +37,18 @@ const EditUserForm: FC<Props> = props => {
     }
   };
 
-  // random avatar
-  const valueImg = () => {
-    const value = `https://robohash.org/${randomNumber()}`;
-    return value;
-  };
-
-  const defaultValues = {
-    firstname: 'Update',
-    lastname: 'Update',
-    email: 'tom.gr@test.com',
-    salary: 1300,
-    createdOn: new Date().toLocaleDateString('ja-JP').replaceAll('/', '-').toString()
-  };
-
   return (
-    <SmartForm<TEmployee> options={{ defaultValues }} onSubmit={handleSubmit}>
+    <SmartForm<TEmployee>
+      options={{ defaultValues: defaultUserValues }}
+      onSubmit={handleSubmit}
+    >
       <Input name="firstname" label="Firstname" type="text" />
       <Input name="lastname" label="Lastname" type="text" />
       <Input name="email" label="Email" type="email" />
       <Input name="phone" label="Phone" type="phone" />
       <Input name="createdOn" label="Date" type="date" />
       <Input name="role" label="Role" type="text" />
-      <Input name="avatar" label="Avatar" type="text" value={valueImg()} />
+      <Input name="avatar" label="Avatar" type="text" />
       <Radios>
         {radioStatus.map(status => (
           <RadioInput

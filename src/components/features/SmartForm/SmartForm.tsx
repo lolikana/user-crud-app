@@ -11,7 +11,9 @@ const SmartForm = <
   onSubmit,
   children
 }: TForm<TFormValues>) => {
-  const methods = useForm({ ...options });
+  const methods = useForm({
+    ...options
+  });
   const {
     handleSubmit,
     reset,

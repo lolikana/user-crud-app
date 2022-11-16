@@ -45,17 +45,17 @@ export const postUser = async (formData: TEmployee) => {
   return res;
 };
 
-// export const updateUser = async (userId: string, formData: TEmployee) => {
-//   const res = await axios
-//     .post(`${BASE_URL}/api/users/${userId}`, formData, config)
-//     .then(res => {
-//       console.log(res);
-//       return res;
-//     })
-//     .catch(error => console.log(error));
+export const updateUser = async (userId: string, formData: TEmployee) => {
+  const res = await axios
+    .put(`${BASE_URL}/api/users/${userId}`, formData, config)
+    .then(res => {
+      console.log(res);
+      return res;
+    })
+    .catch(error => console.log(error));
 
-//   return res;
-// };
+  return res;
+};
 
 export const deleteUser = async (userId: string) => {
   await axios.delete(`${BASE_URL}/api/users/${userId}`);
