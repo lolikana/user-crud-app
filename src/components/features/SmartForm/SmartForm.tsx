@@ -6,14 +6,13 @@ import { TForm } from './types/types';
 const SmartForm = <
   TFormValues extends Record<string, unknown> = Record<string, unknown>
 >({
+  defaultValues,
   showBtn,
   options,
   onSubmit,
   children
 }: TForm<TFormValues>) => {
-  const methods = useForm({
-    ...options
-  });
+  const methods = useForm({ defaultValues, ...options });
   const {
     handleSubmit,
     reset,
@@ -23,7 +22,13 @@ const SmartForm = <
   useEffect(() => {
     if (!isSubmitSuccessful) return;
     reset();
+    return () => reset();
   }, [isSubmitSuccessful, reset]);
+
+  useEffect(() => {
+    reset(defaultValues);
+    return () => reset();
+  }, [defaultValues, reset]);
 
   return (
     <FormProvider {...methods}>
