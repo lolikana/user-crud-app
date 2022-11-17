@@ -25,9 +25,11 @@ const radioStatus: Omit<TRadio, 'name'>[] = [
 ];
 
 const defaultValues = {
-  firstname: 'Tom',
-  lastname: 'Gr',
-  email: 'tom.gr@test.com',
+  firstname: 'firstname',
+  lastname: 'lastname',
+  email: 'test@test.com',
+  phone: '000-0000-0000',
+  role: 'admin',
   createdOn: new Date().toLocaleDateString('ja-JP').replaceAll('/', '-').toString()
 };
 
