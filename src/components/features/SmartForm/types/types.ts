@@ -1,11 +1,12 @@
 import { ChangeEvent, HTMLInputTypeAttribute, ReactNode } from 'react';
-import { FieldValues, SubmitHandler, UseFormProps } from 'react-hook-form';
+import { DeepPartial, FieldValues, SubmitHandler, UseFormProps } from 'react-hook-form';
 
 export type TForm<TFormValues extends FieldValues> = {
   options: UseFormProps<TFormValues>;
   onSubmit: SubmitHandler<TFormValues>;
   children: ReactNode;
   showBtn?: string;
+  defaultValues?: DeepPartial<TFormValues> | undefined;
 };
 
 export type TInput = {

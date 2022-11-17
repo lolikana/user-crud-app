@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import {
   Input,
@@ -7,7 +7,6 @@ import {
   SmartForm,
   TRadio
 } from '@/components/features/SmartForm';
-import { defaultUserValues } from '@/lib/data';
 
 import { toggleMsg } from './AddUserForm';
 import { TEmployee } from './types/types';
@@ -25,8 +24,12 @@ const radioStatus: Omit<TRadio, 'name'>[] = [
   }
 ];
 
-const EditUserForm: FC<toggleMsg> = props => {
-  const { onSuccessMsg, onErrorMsg } = props;
+type Props = {
+  defaultUserDatas: TEmployee;
+};
+
+const EditUserForm: FC<toggleMsg & Props> = props => {
+  const { onSuccessMsg, onErrorMsg, defaultUserDatas } = props;
 
   const handleSubmit = (data: TEmployee) => {
     console.log(data);
@@ -37,9 +40,18 @@ const EditUserForm: FC<toggleMsg> = props => {
     }
   };
 
+  useEffect(() => {
+    defaultUserDatas;
+    console.log();
+  }, [defaultUserDatas]);
+
   return (
     <SmartForm<TEmployee>
-      options={{ defaultValues: defaultUserValues }}
+      defaultValues={{
+        ...defaultUserDatas,
+        createdOn: defaultUserDatas.createdOn.slice(0, 10)
+      }}
+      options={{}}
       onSubmit={handleSubmit}
     >
       <Input name="firstname" label="Firstname" type="text" />

@@ -8,7 +8,7 @@ import { deleteUser, getUsers } from '@/lib/helper';
 import { TEmployee } from './types/types';
 
 type Props = {
-  showEditForm: () => void;
+  showEditForm: (datas: TEmployee) => void;
 };
 
 const userTitle = {
@@ -69,7 +69,7 @@ const UsersTable: FC<Props> = props => {
             </td>
             <td className="py-4 px-6">
               <span
-                onClick={showEditForm}
+                onClick={() => showEditForm(datas)}
                 className="cursor-pointer font-medium text-blue-600 hover:underline dark:text-blue-500"
               >
                 Edit
