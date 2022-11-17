@@ -22,11 +22,17 @@ const userTitle = {
 
 const UsersTable: FC<Props> = props => {
   const { showEditForm } = props;
-  // const { isLoading, isError, data, error } = useQuery(['users'], getUsers);
-  const { isLoading, data } = useQuery(['users'], getUsers);
+  const { isLoading, isError, data, error } = useQuery(['users'], getUsers);
 
-  if (isLoading) return <div>Employee is loading</div>;
-  // if (isError) return <div>Got error : {error}</div>;
+  if (isLoading)
+    return <div className="mt-5 h-full text-white">Employees are loading</div>;
+  if (isError)
+    return (
+      <>
+        <div className="mt-5 h-full text-white">Got error :</div>
+        {error}
+      </>
+    );
 
   return (
     <Table>

@@ -7,6 +7,7 @@ import {
   SmartForm,
   TRadio
 } from '@/components/features/SmartForm';
+import { updateUser } from '@/lib/helper';
 
 import { toggleMsg } from './AddUserForm';
 import { TEmployee } from './types/types';
@@ -35,7 +36,7 @@ const EditUserForm: FC<toggleMsg & Props> = props => {
     console.log(data);
     if (data.status === null) return onErrorMsg();
     if (data) {
-      //  updateUser(data);
+      updateUser(data._id, data);
       return onSuccessMsg();
     }
   };

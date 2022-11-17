@@ -40,7 +40,6 @@ const AddUserForm: FC<toggleMsg> = props => {
   const { onSuccessMsg, onErrorMsg } = props;
 
   const handleSubmit = (data: TEmployee) => {
-    console.log(data);
     if (data.status === null) return onErrorMsg();
     if (data) {
       postUser(data);
