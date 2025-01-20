@@ -43,7 +43,7 @@
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
-    "mongoose": "^6.13.5",
+    "mongoose": "^6.13.6",
     "postcss": "^8.4.31",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
